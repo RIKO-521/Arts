@@ -6,12 +6,12 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-aut
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCUj2IhTNWEJwbQSrTTNxdfNJTYpxSnhbU",
-  authDomain: "akshuto-portfolio.firebaseapp.com",
-  projectId: "akshuto-portfolio",
-  storageBucket: "akshuto-portfolio.firebasestorage.app",
-  messagingSenderId: "289928580886",
-  appId: "1:289928580886:web:832561b3a982a82dd14a37"
+  apiKey: "AIzaSyBMMFeBqS8e_I0AbK-hZWDrz9sDa1Rwvqg",
+  authDomain: "riko521-portfolio.firebaseapp.com",
+  projectId: "riko521-portfolio",
+  storageBucket: "riko521-portfolio.firebasestorage.app",
+  messagingSenderId: "100892079526",
+  appId: "1:100892079526:web:00eada923bfeda923a8b67"
 };
 
 export const app = initializeApp(firebaseConfig);
