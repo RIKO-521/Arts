@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <h1>Site admin</h1>
+    <label>Email</label>
+    <input id="loginEmail" type="email" autocomplete="username">
+    <label>Password</label>
+    <input id="loginPassword" type="password" autocomplete="current-password">
+    <button class="btn" id="loginBtn" style="margin-top:18px;width:100%">Log in</button>
+    <div class="error" id="loginError"></div>
+  </div>
+</div>
+
+<div id="dashboard" style="display:none">
+  <div class="topbar">
+    <strong>Site admin</strong>
+    <button class="btn secondary" id="logoutBtn">Log out</button>
+  </div>
+
+  <div class="dash">
+
+    <div class="panel">
+      <h2>Hero</h2>
+      <div class="row">
+        <div><label>Name</label><input id="heroName"></div>
+        <div><label>Title / role</label><input id="heroTitle"></div>
+      </div>
+      <div class="row">
+        <div><label>Projects completed</label><input id="heroProjectsCount"></div>
+        <div><label>Clients served</label><input id="heroClientsCount"></div>
+      </div>
+      <label>Tagline</label>
+      <textarea id="heroTagline"></textarea>
+      <label>Profile photo</label>
+      <div class="row" style="align-items:center">
+        <img id="heroPhotoPreview" class="thumb" src="">
+        <input type="file" id="heroPhotoInput" accept="image/*">
+      </div>
+      <button class="btn" id="saveHeroBtn" style="margin-top:18px">Save hero</button>
+      <div class="status" id="heroStatus"></div>
+    </div>
+
+    <div class="panel">
+      <h2>About</h2>
+      <label>About text</label>
+      <textarea id="aboutTextInput" style="min-height:140px"></textarea>
+      <button class="btn" id="saveAboutBtn" style="margin-top:18px">Save about</button>
+      <div class="status" id="aboutStatus"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Contact</h2>
+      <div class="row">
+        <div><label>Email</label><input id="contactEmail"></div>
+        <div><label>Book-a-call link (optional)</label><input id="contactBook"></div>
+      </div>
+      <label>Social 1 — label / URL</label>
+      <div class="row"><input id="soc1l" placeholder="Instagram"><input id="soc1u" placeholder="https://"></div>
+      <label>Social 2 — label / URL</label>
+      <div class="row"><input id="soc2l" placeholder="LinkedIn"><input id="soc2u" placeholder="https://"></div>
+      <label>Social 3 — label / URL</label>
+      <div class="row"><input id="soc3l" placeholder="Dribbble"><input id="soc3u" placeholder="https://"></div>
+      <button class="btn" id="saveContactBtn" style="margin-top:18px">Save contact</button>
+      <div class="status" id="contactStatus"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Projects</h2>
+      <div id="projList"></div>
+      <button class="btn secondary" id="addProjBtn" style="margin-top:16px">+ Add project</button>
+    </div>
+
+  </div>
+</div>
+
+<div id="projModal"></div>
+
+<script type="module" src="admin.js"></script>
+</body>
+</html>

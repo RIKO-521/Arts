@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Site content (hero / about / contact) — anyone can read, only a
+    // logged-in admin (that's you) can write.
+    match /content/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Projects — anyone can read, only a logged-in admin can write.
+    match /projects/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Optional page-view counter (tracker.js). Public write so visitors can
+    // increment it without logging in. Delete this block (and tracker.js)
+    // if you don't want visit tracking.
+    match /analytics/{docId} {
+      allow read: if request.auth != null;
+      allow write: if true;
+    }
+  }
+}

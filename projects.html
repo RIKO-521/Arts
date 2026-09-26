@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand" data-field="hero.name">Portfolio</div>
+    <div class="navlinks">
+      <a href="index.html" data-page="index">Home</a>
+      <a href="about.html" data-page="about">About</a>
+      <a href="projects.html" data-page="projects">Portfolio</a>
+      <a href="contact.html" data-page="contact">Contact</a>
+    </div>
+    <a class="cta" href="contact.html">Get in touch</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <section>
+    <h1 class="page-title">Portfolio</h1>
+    <div class="chips" id="chips" style="margin-top:26px"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+</div>
+
+<footer>© <span id="year"></span> — <span data-field="hero.name">Portfolio</span></footer>
+
+<div id="projModal"></div>
+
+<script type="module">
+  import { initChrome, renderProjectsPage } from "./script.js";
+  initChrome("projects");
+  renderProjectsPage();
+</script>
+</body>
+</html>

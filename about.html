@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand" data-field="hero.name">Portfolio</div>
+    <div class="navlinks">
+      <a href="index.html" data-page="index">Home</a>
+      <a href="about.html" data-page="about">About</a>
+      <a href="projects.html" data-page="projects">Portfolio</a>
+      <a href="contact.html" data-page="contact">Contact</a>
+    </div>
+    <a class="cta" href="contact.html">Get in touch</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <section>
+    <h1 class="page-title">About</h1>
+    <p class="about-text" id="aboutText" style="margin-top:24px">Loading…</p>
+  </section>
+</div>
+
+<footer>© <span id="year"></span> — <span data-field="hero.name">Portfolio</span></footer>
+
+<script type="module">
+  import { initChrome, renderAbout, loadSharedContent } from "./script.js";
+  initChrome("about");
+  loadSharedContent().then(renderAbout);
+</script>
+</body>
+</html>
