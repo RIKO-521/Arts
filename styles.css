@@ -54,6 +54,11 @@ h1.hello{font-size:clamp(3.2rem,10vw,6rem);line-height:.95;font-weight:700;color
 /* about */
 .about-text{max-width:620px;color:var(--espresso2);line-height:1.75;font-size:1.05rem;white-space:pre-wrap}
 
+/* home projects section */
+.home-work{padding:20px 0 64px}
+.home-work-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;gap:20px;flex-wrap:wrap}
+.home-work-head .sectitle{margin-bottom:0}
+
 /* portfolio grid */
 .chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
 .chip{padding:7px 18px;border:1px solid var(--line);border-radius:6px;font-size:.85rem;cursor:pointer;background:var(--cream2)}
