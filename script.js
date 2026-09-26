@@ -99,8 +99,8 @@ function renderGrid() {
   grid.querySelectorAll(".card").forEach(el => el.onclick = () => openProjectModal(el.dataset.id));
 }
 
-function openProjectModal(id) {
-  const p = allProjects.find(pr => pr.id === id);
+function openProjectModal(id, list = allProjects) {
+  const p = list.find(pr => pr.id === id);
   if (!p) return;
   const images = [p.cover, ...(p.gallery || [])].filter(Boolean);
   const modal = document.getElementById("projModal");
@@ -118,4 +118,23 @@ function openProjectModal(id) {
 
 export async function loadSharedContent() {
   return getContent();
+}
+
+export async function renderHomeProjects() {
+  const grid = document.getElementById("homeGrid");
+  if (!grid) return;
+  const projects = await getProjects();
+  if (!projects.length) {
+    grid.innerHTML = `<p class="empty-note">No projects yet.</p>`;
+    return;
+  }
+  grid.innerHTML = projects.map(p => `
+    <div class="card" data-id="${p.id}">
+      <img src="${p.cover || ""}" alt="${p.title || ""}">
+      <div class="cbody">
+        <div class="ctag">${p.category || ""}</div>
+        <h3>${p.title || "Untitled"}</h3>
+      </div>
+    </div>`).join("");
+  grid.querySelectorAll(".card").forEach(el => el.onclick = () => openProjectModal(el.dataset.id, projects));
 }
