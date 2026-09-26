@@ -3,10 +3,12 @@
 import {
   doc, getDoc, setDoc, collection, getDocs, addDoc, updateDoc, deleteDoc, query, orderBy
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-import {
-  ref, uploadBytes, getDownloadURL, deleteObject
-} from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
-import { db, storage } from "./firebase-init.js";
+import { db } from "./firebase-init.js";
+
+// Cloudinary unsigned upload — images go straight from the browser to your
+// Cloudinary account, no server or Firebase Storage needed.
+const CLOUDINARY_CLOUD_NAME = "u2hsxcjj";
+const CLOUDINARY_UPLOAD_PRESET = "Riko_portfolio";
 
 export const DEFAULT_CONTENT = {
   hero: {
@@ -54,14 +56,19 @@ export async function deleteProject(id) {
   return deleteDoc(doc(db, "projects", id));
 }
 
-/** Uploads a single image file to Storage under `path` and returns its public URL. */
-export async function uploadImage(file, path) {
-  const r = ref(storage, path);
-  await uploadBytes(r, file);
-  return getDownloadURL(r);
-}
+/** Uploads a single image file to Cloudinary and returns its public URL. */
+export async function uploadImage(file) {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
 
-/** Best-effort delete; ignores errors (e.g. file already gone). */
-export async function deleteImage(path) {
-  try { await deleteObject(ref(storage, path)); } catch (e) { /* ignore */ }
+  const res = await fetch(
+    `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+    { method: "POST", body: formData }
+  );
+  if (!res.ok) {
+    throw new Error("Image upload failed — check your Cloudinary cloud name and upload preset.");
+  }
+  const data = await res.json();
+  return data.secure_url;
 }
