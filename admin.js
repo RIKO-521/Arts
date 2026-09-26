@@ -68,8 +68,7 @@ document.getElementById("saveHeroBtn").onclick = async () => {
   status.textContent = "Saving…";
   try {
     if (pendingHeroFile) {
-      const path = `profile/photo-${Date.now()}-${pendingHeroFile.name}`;
-      content.hero.photoURL = await uploadImage(pendingHeroFile, path);
+      content.hero.photoURL = await uploadImage(pendingHeroFile);
       pendingHeroFile = null;
     }
     content.hero.name = document.getElementById("heroName").value.trim();
@@ -184,12 +183,12 @@ function openProjectEditor(id) {
       }
       const updates = { title, category };
       if (coverFile) {
-        updates.cover = await uploadImage(coverFile, `projects/${docId}/cover-${Date.now()}-${coverFile.name}`);
+        updates.cover = await uploadImage(coverFile);
       }
       if (galleryFiles.length) {
         const urls = [];
         for (const f of galleryFiles) {
-          urls.push(await uploadImage(f, `projects/${docId}/gallery-${Date.now()}-${f.name}`));
+          urls.push(await uploadImage(f));
         }
         updates.gallery = [...(existing?.gallery || []), ...urls];
       }
